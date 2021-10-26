@@ -1,0 +1,14 @@
+{
+  "name": "ChickenShopAPI",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/Lailz/ChickenShopAPI.git",
+  "author": "Lailz <lailaabdulraheem@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
