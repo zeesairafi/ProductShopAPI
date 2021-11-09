@@ -1,4 +1,3 @@
-const products = require("../../products");
 const Product = require("../../db/models/Product");
 
 exports.fetchProduct = async (productId, next) => {
@@ -12,7 +11,7 @@ exports.fetchProduct = async (productId, next) => {
 
 exports.productListFetch = async (req, res, next) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().populate("shop");
     return res.json(products);
   } catch (error) {
     next(error);
@@ -20,25 +19,20 @@ exports.productListFetch = async (req, res, next) => {
   }
 };
 
-exports.productDetailFetch = async (req, res, next) =>
+exports.productDetailFetch = async (req, res, next) => {
+  console.log("product", req.product.id);
   res.status(200).json(req.product);
-
-exports.productCreate = async (req, res, next) => {
-  try {
-    const newProduct = await Product.create(req.body);
-    return res.status(201).json(newProduct);
-  } catch (error) {
-    next(error);
-  }
 };
-
 exports.productUpdate = async (req, res, next) => {
   try {
+    if (req.file) {
+      req.body.image = `${req.protocol}://${req.get("host")}/${req.file.path}`;
+    }
     const product = await Product.findByIdAndUpdate(
       req.product,
       req.body,
       { new: true, runValidators: true } // returns the updated product
-    );
+    ).populate("shop");
     return res.status(200).json(product);
   } catch (error) {
     next(error);

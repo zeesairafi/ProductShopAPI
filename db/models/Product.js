@@ -14,10 +14,17 @@ const ProductSchema = mongoose.Schema(
       default: 5,
     },
     description: String,
-    color: String,
+    color: {
+      type: String,
+      enum: ["black", "white", "blue", "aqua", "navy"],
+    },
     quantity: {
       type: Number,
       min: 0,
+    },
+    shop: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Shop",
     },
   },
   {
