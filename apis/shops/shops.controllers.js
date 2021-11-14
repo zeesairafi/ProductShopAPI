@@ -23,7 +23,8 @@ exports.shopListFetch = async (req, res, next) => {
 exports.shopCreate = async (req, res, next) => {
   try {
     if (req.file) {
-      req.body.image = `${req.protocol}://${req.get("host")}/${req.file.path}`;
+      // /media/imagename.jpg
+      req.body.image = `/${req.file.path}`;
     }
     req.body.owner = req.user._id;
     const newShop = await Shop.create(req.body);
@@ -49,7 +50,7 @@ exports.productCreate = async (req, res, next) => {
       });
     }
     if (req.file) {
-      req.body.image = `${req.protocol}://${req.get("host")}/${req.file.path}`;
+      req.body.image = `/${req.file.path}`;
     }
     req.body.shop = req.params.shopId;
     const newProduct = await Product.create(req.body);
