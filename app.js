@@ -10,7 +10,7 @@ const shopRoutes = require("./apis/shops/shops.routes");
 const userRoutes = require("./apis/users/users.routes");
 
 // DB
-const connectDB = require("./db/database");
+const connectDB = require("./db/models/database");
 
 // Middleware
 const logger = require("./middleware/logger");

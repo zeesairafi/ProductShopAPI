@@ -25,14 +25,14 @@ router.get("/", shopListFetch);
 
 router.post(
   "/",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   upload.single("image"),
   shopCreate
 );
 
 router.post(
   "/:shopId/products",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   upload.single("image"),
   productCreate
 );

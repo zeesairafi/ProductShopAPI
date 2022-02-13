@@ -26,7 +26,7 @@ exports.shopCreate = async (req, res, next) => {
       // /media/imagename.jpg
       req.body.image = `/${req.file.path}`;
     }
-    req.body.owner = req.user._id;
+    // req.body.owner = req.user._id;
     const newShop = await Shop.create(req.body);
     await newShop.populate({
       path: "owner",
